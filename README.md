@@ -46,9 +46,7 @@ Node.js: Para configurar dependências e servir o jogo localmente.
 Um agradecimento especial a @jico pelo incrível projeto 3D Dice, que foi uma inspiração fundamental para a implementação deste jogo!
 Link: https://codepen.io/jico/pen/wvMpgog
 
-Estrutura do Projeto
-plaintext
-Copiar
+## Estrutura do Projeto
 
 /
 ├── index.html          # Página principal do jogo
@@ -62,10 +60,14 @@ Copiar
 ├── scss/               # Arquivos SCSS
 │   ├── dice.scss       # Estilos dos dados
 │   └── styles.scss     # Estilos gerais
-Contribuição
+
+
+## Contribuição
+
 Sinta-se à vontade para contribuir! Se encontrar bugs ou tiver ideias, abra uma issue ou envie um pull request.
 
-Licença
+##Licença
+
 Este projeto está licenciado sob a MIT License.
 
 Prepare-se para rolar os dados e desvendar o mistério! Boa sorte, aventureiro! ✨
