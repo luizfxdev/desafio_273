@@ -48,6 +48,7 @@ Link: https://codepen.io/jico/pen/wvMpgog
 
 ## Estrutura do Projeto
 
+```
 /
 ├── index.html          # Página principal do jogo
 ├── package.json        # Configurações do projeto e scripts
@@ -61,7 +62,7 @@ Link: https://codepen.io/jico/pen/wvMpgog
 │   ├── dice.scss       # Estilos dos dados
 │   └── styles.scss     # Estilos gerais
 
-
+```
 ## Contribuição
 
 Sinta-se à vontade para contribuir! Se encontrar bugs ou tiver ideias, abra uma issue ou envie um pull request.
