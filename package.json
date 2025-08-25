@@ -1,0 +1,43 @@
+{
+  "name": "dados-misteriosos-codeland",
+  "version": "1.0.0",
+  "description": "As Crônicas de CodeLand: O Jogo dos Dados Misteriosos - Desafio interativo com animações 3D",
+  "main": "index.html",
+  "scripts": {
+    "dev": "concurrently \"npm run watch:scss\" \"npm run serve\"",
+    "watch:scss": "sass --watch scss/dice.scss:css/dice.css scss/styles.scss:css/styles.css --style=compressed",
+    "build:scss": "sass scss/dice.scss:css/dice.css scss/styles.scss:css/styles.css --style=compressed",
+    "serve": "http-server -p 3000 -o index.html",
+    "build": "npm run build:scss",
+    "watch": "npm run watch:scss"
+  },
+  "keywords": [
+    "javascript",
+    "css3",
+    "scss",
+    "dados",
+    "animação",
+    "3d",
+    "desafio",
+    "codeland",
+    "magia"
+  ],
+  "author": "@luizfx.dev",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "http-server": "^14.1.1",
+    "sass": "^1.69.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeland/dados-misteriosos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codeland/dados-misteriosos/issues"
+  },
+  "homepage": "https://codeland.github.io/dados-misteriosos"
+}

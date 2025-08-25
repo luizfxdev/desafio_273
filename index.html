@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>As Crônicas de CodeLand: O Jogo dos Dados Misteriosos</title>
+    <link rel="stylesheet" href="css/dice.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Background Image Container -->
+    <div class="background-container">
+      <img src="assets/background.png" alt="Magical Background" class="background-image" />
+      <div class="background-overlay"></div>
+    </div>
+
+    <!-- Layout Principal com Container -->
+    <div class="main-layout">
+      <div class="challenge-container">
+        <header class="challenge-header">
+          <h1>🎲 O Jogo dos Dados Misteriosos</h1>
+          <p>Ajude o mago Gandalfoo a encontrar o tesouro secreto!</p>
+        </header>
+
+        <!-- Input para Entrada Manual (preenchido automaticamente pela rolagem) -->
+        <div class="input-section">
+          <label for="manualInput">Resultados dos dados (preenchido automaticamente):</label>
+          <input type="text" id="manualInput" placeholder="Clique em 'ROLAR 3X' para gerar..." maxlength="5" readonly />
+        </div>
+
+        <!-- Botões de Ação -->
+        <div class="buttons-section">
+          <button class="magic-button" id="rollButton" style="--clr: #9d4edd" tabindex="1">
+            <span>ROLAR 3X</span>
+            <i></i>
+          </button>
+          <button class="magic-button" id="resetButton" style="--clr: #f72585" tabindex="2">
+            <span>RESETAR</span>
+            <i></i>
+          </button>
+        </div>
+
+        <!-- Seção de Resultado -->
+        <div class="result-section">
+          <h3>🔮 Resultado da Magia</h3>
+          <div id="calculationDetails" class="calculation-details empty"></div>
+          <div id="finalResult" class="final-result"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Área dos Dados Animados - POSICIONAMENTO ABSOLUTO CENTRALIZADO -->
+    <div class="dice-area">
+      <div class="diceWrap">
+        <div class="dice" id="mainDice">
+          <div class="diceFace front"></div>
+          <div class="diceFace up"></div>
+          <div class="diceFace left"></div>
+          <div class="diceFace right"></div>
+          <div class="diceFace bottom"></div>
+          <div class="diceFace back"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay opcional para melhor contraste visual -->
+    <div class="dice-overlay" id="diceOverlay"></div>
+
+    <script src="js/dice.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

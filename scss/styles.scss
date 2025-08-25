@@ -1,0 +1,445 @@
+@use 'sass:math';
+@use 'sass:color';
+
+// styles.scss - Layout e Estilos Gerais
+// Variáveis de cores mágicas
+$primary-purple: #9d4edd;
+$primary-pink: #f72585;
+$primary-cyan: #40e0d0;
+$success-green: #00ff88;
+$error-red: #ff4757;
+$dark-bg: #0f0f23;
+$dark-secondary: #1a1a2e;
+$dark-accent: #16213e;
+
+// Variáveis de espaçamento
+$container-width: 420px;
+$container-padding: 2.5rem;
+$border-radius: 24px;
+$button-radius: 8px;
+
+// Mixins úteis
+@mixin glass-effect {
+  background: rgba($dark-bg, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba($primary-purple, 0.3);
+}
+
+@mixin button-hover-effect($color) {
+  &:hover {
+    letter-spacing: 0.15rem;
+    background: $color;
+    color: $color;
+    animation: box 3s infinite;
+  }
+}
+
+@mixin responsive-breakpoint($size) {
+  @if $size == mobile {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media (max-width: 1024px) {
+      @content;
+    }
+  } @else if $size == small {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+}
+
+// Reset e base
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, $dark-bg 0%, $dark-secondary 25%, $dark-accent 50%, #0f3460 75%, #533483 100%);
+  background-attachment: fixed;
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  overflow-x: hidden;
+
+  // Efeito de brilho de fundo
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 25% 25%, rgba($primary-purple, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba($primary-pink, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba($primary-cyan, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+// Container Principal do Desafio - POSICIONADO À ESQUERDA
+.challenge-container {
+  position: fixed;
+  left: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: $container-width;
+  max-width: calc(100vw - 4rem);
+  @include glass-effect;
+  border-radius: $border-radius;
+  padding: $container-padding;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba($primary-purple, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  z-index: 10;
+}
+
+// Cabeçalho do desafio
+.challenge-header {
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, $primary-purple, $primary-pink, $primary-cyan);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+}
+
+// Seção de Input
+.input-section {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba($primary-purple, 0.3);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-purple;
+      box-shadow: 0 0 0 3px rgba($primary-purple, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    &[readonly] {
+      cursor: default;
+      background: rgba(255, 255, 255, 0.02);
+    }
+  }
+}
+
+// Seção de Botões
+.buttons-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+// Botões Mágicos
+.magic-button {
+  flex: 1;
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: $button-radius;
+  cursor: pointer;
+  transition: 0.2s;
+  @include button-hover-effect(var(--clr));
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #272822;
+    border-radius: 6px;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+  }
+
+  i {
+    position: absolute;
+    inset: 0;
+    display: block;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      left: 80%;
+      top: -2px;
+      border: 2px solid var(--clr);
+      background: #272822;
+      transition: 0.2s;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 2px;
+      left: 20%;
+      bottom: -2px;
+      border: 2px solid var(--clr);
+      background: #272822;
+      transition: 0.2s;
+    }
+  }
+
+  &:hover i {
+    &::before {
+      width: 15px;
+      left: 20%;
+      animation: move 3s infinite;
+    }
+
+    &::after {
+      width: 15px;
+      left: 80%;
+      animation: move 3s infinite;
+    }
+  }
+}
+
+// Seção de Resultado
+.result-section {
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $primary-cyan;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.calculation-details {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba($primary-cyan, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.empty {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+
+    &::before {
+      content: 'Aguardando rolagem dos dados mágicos...';
+    }
+  }
+}
+
+.final-result {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.success {
+    background: linear-gradient(135deg, rgba($success-green, 0.1), rgba($primary-cyan, 0.1));
+    border: 1px solid rgba($success-green, 0.3);
+    color: $success-green;
+    animation: glow-success 2s ease-in-out infinite alternate;
+  }
+
+  &.failure {
+    background: linear-gradient(135deg, rgba($error-red, 0.1), rgba($primary-pink, 0.1));
+    border: 1px solid rgba($error-red, 0.3);
+    color: $error-red;
+  }
+}
+
+// Animações
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
+
+@keyframes glow-success {
+  0% {
+    box-shadow: 0 0 5px rgba($success-green, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba($success-green, 0.6), 0 0 30px rgba($success-green, 0.3);
+  }
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+// Estados de Loading
+.loading {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: loading 1.5s infinite;
+  }
+}
+
+// Responsividade
+@include responsive-breakpoint(tablet) {
+  .challenge-container {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+@include responsive-breakpoint(mobile) {
+  .challenge-container {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .challenge-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .buttons-section {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .magic-button {
+    padding: 1.125rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+@include responsive-breakpoint(small) {
+  .challenge-container {
+    margin: 0.5rem;
+    padding: 1.25rem;
+  }
+
+  .challenge-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .calculation-details,
+  .final-result {
+    font-size: 0.85rem;
+  }
+}
